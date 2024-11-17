@@ -1,0 +1,38 @@
+units:
+  # Proxy Spacing Variables
+  kx: u
+  ky: u
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+  stagger: 3
+  splay: -4
+
+points:
+  zones:
+    matrix:
+      key:
+        paddding: 1ky
+        spread: 1kx
+      columns:
+        stretch:
+          key.splay: 8
+          rows.mod.skip: true
+        pinky:
+          rows.mod.skip: true
+          key.splay: splay
+        ring:
+          key.stagger: 2stagger
+          key.splay: splay
+        middle:
+          key.stagger: stagger
+        index:
+          key.stagger: -stagger
+        inner:
+          key.stagger: -stagger
+      rows:
+        mod:
+        bottom:
+        home:
+        top:
+        num:
