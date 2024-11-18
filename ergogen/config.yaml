@@ -1,0 +1,88 @@
+meta:
+  engine: 4.1.0
+  name: krypton
+  version: alpha
+  ref: &kb_ref "alpha release"
+  author: mroetsc
+  url: &kb_url github.com/mroetsc/krypton-kbd
+
+units:
+  # --- Proxy Spacing Variables --- #
+  kx: U
+  ky: U
+
+  # --- Padding Variables --- #
+  padding: 2
+  px: kx + padding
+  py: ky + padding
+
+  # --- Other --- #
+  stagger: 3
+  splay: -3
+  extra_spacing: 1
+  thumbsplay: -6
+
+points:
+  zones:
+    # ----- Keys ----- #
+    matrix:
+      # anchor.shift: [0, 0]
+      anchor.rotate: -3splay
+      key:
+        tags: [switch]
+        #paddding: 1ky
+        #spread: 1kx
+        #height: 1ky
+        #width: 1kx
+      columns:
+        stretch:
+          rows.num.skip: true
+          key.splay: splay
+        pinky:
+          key.splay: splay
+          key.spread: 1px
+        ring:
+          key.stagger: stagger
+          key.splay: splay
+          key.spread: 1px
+        middle:
+          key.stagger: stagger
+        index:
+          key.stagger: -stagger
+        inner:
+          key.stagger: -stagger
+        brackets:
+          key.stagger: -3stagger
+          rows:
+            bottom.skip: true
+            top.skip: true
+            num.skip: true
+      rows:
+        bottom:
+        home:
+        top:
+        num:
+
+    thumbfan:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -1.25ky]
+      columns:
+        ctrl:
+        super:
+          key:
+            splay: thumbsplay
+            spread: 1px
+            stagger: -0.5stagger
+        space:
+          key:
+            splay: thumbsplay
+            spread: 1px
+            stagger: -0.5stagger
+        layer:
+          key:
+            splay: thumbsplay
+            spread: 1px
+            stagger: -0.5stagger
+      rows:
+        cluster:
