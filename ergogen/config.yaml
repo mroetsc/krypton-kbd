@@ -22,6 +22,12 @@ units:
   extra_spacing: 1
   thumbsplay: -6
 
+  # --- Components --- #
+  oled_width: 36
+  oled_height: 14
+  encoder_width: 12
+  encoder_height: 12
+
 points:
   zones:
     # ----- Keys ----- #
@@ -52,7 +58,7 @@ points:
         inner:
           key.stagger: -stagger
         brackets:
-          key.stagger: -3stagger
+          key.stagger: -stagger
           rows:
             bottom.skip: true
             top.skip: true
@@ -86,3 +92,37 @@ points:
             stagger: -0.5stagger
       rows:
         cluster:
+
+    oled:
+      anchor:
+        ref: matrix_inner_num
+        shift: [2kx, 0.1ky]
+      columns:
+        display:
+          key:
+            tags: [oled]
+            width: oled_width
+            height: oled_height
+
+    encoder:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [45, -5]
+      columns:
+        encoder:
+          key:
+            tags: [encoder]
+            width: encoder_width
+            height: encoder_height
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      bound: true
+      asym: left
+      size: [18, 17]
+      corner: 1
+
+
+pcbs:
