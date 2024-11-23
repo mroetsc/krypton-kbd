@@ -120,9 +120,39 @@ outlines:
     - what: rectangle
       where: true
       bound: true
-      asym: left
-      size: [18, 17]
-      corner: 1
+      size: [px, py]
 
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5, ky-0.5]
 
+  board:
+    - what: polygon
+      operation: stack
+      fillet: 3
+      points:
+        - ref: matrix_stretch_top
+          shift: [-0.65px, 0.65py]
+        - ref: matrix_stretch_top
+          shift: [0.53px, 0.65py]
+        - ref: matrix_pinky_num
+          shift: [-0.65kx, 0.65py]
+        - ref: matrix_middle_num
+          shift: [0px, 0.65py]
+        - ref: oled_display
+          shift: [1.1px, 0.8py]
+        - ref: thumbfan_layer_cluster
+          shift: [1px, -0.65py]
+        - ref: thumbfan_ctrl_cluster
+          shift: [-0.6px, -0.65py]
+        - ref: matrix_middle_bottom
+          shift: [0.3px, -0.8py]
+        - ref: matrix_stretch_bottom
+          shift: [-0.65px, -0.65py]
+
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
 pcbs:
