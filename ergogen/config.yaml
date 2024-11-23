@@ -32,7 +32,7 @@ points:
   zones:
     # ----- Keys ----- #
     matrix:
-      # anchor.shift: [0, 0]
+      anchor.shift: [125, -150]
       anchor.rotate: -3splay
       key:
         tags: [switch]
@@ -156,3 +156,25 @@ outlines:
     - operation: subtract
       name: keys
 pcbs:
+  left:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      mx_hotswap:
+        what: mx
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
