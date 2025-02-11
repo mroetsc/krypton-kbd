@@ -65,7 +65,7 @@ points:
         home:
         top:
 
-    thumbs:
+    thumb:
       anchor:
         ref: matrix_index_bottom
         shift: [0kx, -1.25ky]
@@ -103,19 +103,34 @@ points:
         width: encoder_width
         height: encoder_height
       columns:
+        encoder:
+      rows:
+        encoder:
 
     oled:
       anchor:
         ref: matrix_brackets_bottom
-        shift: [1.3kx, 0.8ky]
+        shift: [1.5kx, 0.8ky]
       key:
         tags: [encoder]
         width: oled_width
         height: oled_height
         rotate: 90
+      columns:
+        oled:
+      rows:
+        oled:
 
 outlines:
   raw:
     - what: rectangle
       where: true
       size: [px, py]
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: oled_oled_oled
+          shift: [0, 0]
+        - ref: thumb_layer_cluster
+          shift: [0, 0]
