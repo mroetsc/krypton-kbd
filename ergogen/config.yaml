@@ -8,8 +8,8 @@ meta:
 
 units:
   # --- Proxy Spacing Variables --- #
-  kx: U
-  ky: U
+  kx: u
+  ky: u
 
   # --- Padding Variables --- #
   padding: 2
@@ -32,25 +32,23 @@ points:
   zones:
     # ----- Keys ----- #
     matrix:
-      anchor.shift: [125, -150]
-      anchor.rotate: -3splay
+      anchor:
+        shift: [125, -150]
+        rotate: -2splay
       key:
         tags: [switch]
-        #paddding: 1ky
-        #spread: 1kx
-        #height: 1ky
-        #width: 1kx
+        padding: 1ky
+        spread: 1ky
       columns:
         stretch:
-          rows.num.skip: true
-          key.splay: splay
         pinky:
-          key.splay: splay
-          key.spread: 1px
+          key:
+            stagger: stagger
+            splay: splay
         ring:
-          key.stagger: stagger
-          key.splay: splay
-          key.spread: 1px
+          key:
+            stagger: 2stagger
+            splay: splay
         middle:
           key.stagger: stagger
         index:
@@ -58,21 +56,23 @@ points:
         inner:
           key.stagger: -stagger
         brackets:
-          key.stagger: -stagger
+          key.stagger: -3stagger
           rows:
             bottom.skip: true
             top.skip: true
-            num.skip: true
       rows:
         bottom:
         home:
         top:
-        num:
 
-    thumbfan:
+    thumbs:
       anchor:
         ref: matrix_index_bottom
-        shift: [0, -1.25ky]
+        shift: [0kx, -1.25ky]
+      key:
+        tags: [switch]
+        padding: 1ky
+        spread: 1ky
       columns:
         ctrl:
         super:
@@ -85,6 +85,7 @@ points:
             splay: thumbsplay
             spread: 1px
             stagger: -0.5stagger
+            height: 1.25ky
         layer:
           key:
             splay: thumbsplay
@@ -93,88 +94,28 @@ points:
       rows:
         cluster:
 
-    oled:
-      anchor:
-        ref: matrix_inner_num
-        shift: [2kx, 0.1ky]
-      columns:
-        display:
-          key:
-            tags: [oled]
-            width: oled_width
-            height: oled_height
-
     encoder:
       anchor:
-        ref: matrix_inner_bottom
-        shift: [45, -5]
+        ref: matrix_brackets_top
+        shift: [0.25kx, 0.25ky]
+      key:
+        tags: [encoder]
+        width: encoder_width
+        height: encoder_height
       columns:
-        encoder:
-          key:
-            tags: [encoder]
-            width: encoder_width
-            height: encoder_height
+
+    oled:
+      anchor:
+        ref: matrix_brackets_bottom
+        shift: [1.3kx, 0.8ky]
+      key:
+        tags: [encoder]
+        width: oled_width
+        height: oled_height
+        rotate: 90
 
 outlines:
   raw:
     - what: rectangle
       where: true
-      bound: true
       size: [px, py]
-
-  keys:
-    - what: rectangle
-      where: true
-      size: [kx-0.5, ky-0.5]
-
-  board:
-    - what: polygon
-      operation: stack
-      fillet: 3
-      points:
-        - ref: matrix_stretch_top
-          shift: [-0.65px, 0.65py]
-        - ref: matrix_stretch_top
-          shift: [0.53px, 0.65py]
-        - ref: matrix_pinky_num
-          shift: [-0.65kx, 0.65py]
-        - ref: matrix_middle_num
-          shift: [0px, 0.65py]
-        - ref: oled_display
-          shift: [1.1px, 0.8py]
-        - ref: thumbfan_layer_cluster
-          shift: [1px, -0.65py]
-        - ref: thumbfan_ctrl_cluster
-          shift: [-0.6px, -0.65py]
-        - ref: matrix_middle_bottom
-          shift: [0.3px, -0.8py]
-        - ref: matrix_stretch_bottom
-          shift: [-0.65px, -0.65py]
-
-  combo:
-    - name: board
-    - operation: subtract
-      name: keys
-pcbs:
-  left:
-    outlines:
-      main:
-        outline: board
-    footprints:
-      mx_hotswap:
-        what: mx
-        where: true
-        params:
-          keycaps: true
-          reverse: false
-          hotswap: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-      diode:
-        what: diode
-        where: true
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-        adjust:
-          shift: [0, -5]
