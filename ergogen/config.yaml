@@ -153,7 +153,7 @@ outlines:
   board:
     - what: polygon
       operation: stack
-      fillet: 3
+      fillet: 2
       points:
         - ref: thumb_layer_cluster
           shift: [1.34px, -0.5py]
@@ -188,3 +188,31 @@ outlines:
     - name: board
     - operation: subtract
       name: components
+
+pcbs:
+  left:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      mx_hotswap:
+        what: mx
+        where: switch
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: switch
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      nicenano:
+        what: mcu_nice_nano
+        params:
+        where: mcu
