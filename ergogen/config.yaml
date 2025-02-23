@@ -79,17 +79,16 @@ points:
         spread: 1ky
       columns:
         super:
-
         space:
           key:
             splay: thumbsplay
-            spread: 1px
+            spread: 1.15kx
             stagger: -0.5stagger
 
         layer:
           key:
             splay: thumbsplay
-            spread: 1px
+            spread: 1.15kx
             stagger: -0.5stagger
       rows:
         cluster:
@@ -116,14 +115,76 @@ points:
         width: mcu_width
         height: mcu_height
 
+  #mirror:
+  #  ref: matrix_brackets_top
+  #  distance: 100
+
 outlines:
   raw:
     - what: rectangle
       where: true
       size: [px, py]
+
+  keys:
+    - what: rectangle
+      where: switch
+      bound: false
+      size: [kx-0.5,ky-0.5]
+
+  mcu:
+    - what: rectangle
+      where: mcu
+      size: [mcu_width, mcu_height]
+
+  encoder:
+    - what: rectangle
+      where: encoder
+      size: [encoder_width, encoder_height]
+
+  components:
+    - name: components
+    - operation: add
+      name: keys
+    - operation: add
+      name: mcu
+    - operation: add
+      name: encoder
+
   board:
     - what: polygon
       operation: stack
+      fillet: 3
       points:
         - ref: thumb_layer_cluster
-          shift: [0, 0]
+          shift: [1.34px, -0.5py]
+        - ref: thumb_super_cluster
+          shift: [-0.6px, -0.6py]
+        - ref: matrix_index_bottom
+          shift: [-0.15px, -0.75py]
+        - ref: matrix_ring_bottom
+          shift: [0px, -0.75py]
+        - ref: matrix_pinky_bottom
+          shift: [-0.75px, -0.85py]
+        - ref: matrix_stretch_bottom
+          shift: [-0.6px, -0.6py]
+        - ref: matrix_stretch_top
+          shift: [-0.6px, 0.6py]
+        - ref: matrix_stretch_top
+          shift: [0.4px, 0.6py]
+        - ref: matrix_pinky_num
+          shift: [-0.6px, 0.6py]
+        - ref: matrix_ring_num
+          shift: [-0.6px, 0.75py]
+        - ref: matrix_middle_num
+          shift: [0px, 0.6py]
+        - ref: mcu
+          shift: [0.6px, 0.95py]
+        - ref: matrix_brackets_home
+          shift: [0.85px, 0.5py]
+        - ref: encoder_encoder_encoder
+          shift: [0.6px, 0.75py]
+
+  combo:
+    - name: board
+    - operation: subtract
+      name: components
