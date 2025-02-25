@@ -41,33 +41,49 @@ points:
         spread: 1ky
       columns:
         stretch:
+          key:
+            column_net: col1
           rows:
             num.skip: true
         pinky:
           key:
             stagger: stagger
             splay: splay
+            column_net: col2
         ring:
           key:
             stagger: 2stagger
             splay: splay
+            column_net: col3
         middle:
-          key.stagger: stagger
+          key:
+            stagger: stagger
+            column_net: col4
         index:
-          key.stagger: -stagger
+          key:
+            stagger: -stagger
+            column_net: col5
         inner:
-          key.stagger: -stagger
+          key:
+            stagger: -stagger
+            column_net: col6
         brackets:
-          key.stagger: -3stagger
+          key:
+            stagger: -3stagger
+            column_net: col7
           rows:
             bottom.skip: true
             top.skip: true
             num.skip: true
       rows:
         bottom:
+          row_net: row4
         home:
+          row_net: row3
         top:
+          row_net: row2
         num:
+          row_net: row1
 
     thumb:
       anchor:
@@ -79,19 +95,23 @@ points:
         spread: 1ky
       columns:
         super:
+          key.column_net: col5
         space:
           key:
             splay: thumbsplay
             spread: 1.15kx
             stagger: -0.5stagger
+            column_net: col6
 
         layer:
           key:
             splay: thumbsplay
             spread: 1.15kx
             stagger: -0.5stagger
+            column_net: col7
       rows:
         cluster:
+          row_net: row5
 
     encoder:
       anchor:
@@ -103,8 +123,11 @@ points:
         height: encoder_height
       columns:
         encoder:
+          key:
+            column_net: col7
       rows:
         encoder:
+          row_net: row3
 
     mcu:
       anchor:
@@ -216,8 +239,22 @@ pcbs:
 
       nicenano:
         what: ceoloide/mcu_nice_nano
-        params:
         where: mcu
+        params:
+          P3: col1
+          P4: col2
+          P5: col3
+          P6: col4
+          P7: col5
+          P8: col6
+          P9: col7
+          P18: row1
+          P15: row2
+          P14: row3
+          P16: row4
+          P10: row5
+          P19: RE_C
+          P20: RE_A
 
       reset:
         what: ceoloide/reset_switch_smd_side
@@ -229,15 +266,25 @@ pcbs:
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12
         where: encoder
+        adjust:
+          rotate: 180
         params:
           include_plate_hole_marking: true
+
+      diode_encoder:
+        what: diode
+        where: encoder
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -10]
 
       jstph:
         what: ceoloide/battery_connector_jst_ph_2
         where:
           ref: mcu
-          shift: [0, -30]
-          rotate: 180
+          shift: [0, -22.5]
         params:
           side: B
 
