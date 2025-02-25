@@ -109,7 +109,7 @@ points:
     mcu:
       anchor:
         ref: matrix_brackets_top
-        shift: [0.25kx, 1.4ky]
+        shift: [0.25kx, 1.5ky]
       key:
         tags: [mcu]
         width: mcu_width
@@ -178,7 +178,7 @@ outlines:
         - ref: matrix_middle_num
           shift: [0px, 0.6py]
         - ref: mcu
-          shift: [0.6px, 0.95py]
+          shift: [0.6px, 0.85py]
         - ref: matrix_brackets_home
           shift: [0.85px, 0.5py]
         - ref: encoder_encoder_encoder
@@ -204,6 +204,7 @@ pcbs:
           hotswap: true
           from: "{{column_net}}"
           to: "{{colrow}}"
+
       diode:
         what: diode
         where: switch
@@ -212,7 +213,37 @@ pcbs:
           to: "{{row_net}}"
         adjust:
           shift: [0, -5]
+
       nicenano:
-        what: mcu_nice_nano
+        what: ceoloide/mcu_nice_nano
         params:
         where: mcu
+
+      reset:
+        what: ceoloide/reset_switch_smd_side
+        where:
+          ref: mcu
+          shift: [11, -25]
+          rotate: -90
+
+      encoder:
+        what: ceoloide/rotary_encoder_ec11_ec12
+        where: encoder
+        params:
+          include_plate_hole_marking: true
+
+      jstph:
+        what: ceoloide/battery_connector_jst_ph_2
+        where:
+          ref: mcu
+          shift: [0, -30]
+          rotate: 180
+        params:
+          side: B
+
+      power:
+        what: ceoloide/power_switch_smd_side
+        where:
+          ref: encoder_encoder_encoder
+          shift: [0, 16]
+          rotate: 80
