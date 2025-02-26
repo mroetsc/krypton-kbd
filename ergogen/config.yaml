@@ -270,20 +270,17 @@ pcbs:
           rotate: 180
         params:
           include_plate_hole_marking: true
-          # TODO: Proper nets for encoder and diode
-          S1: row3
-          S2: col7
+          S1: col7
+          S2: encoder_encoder
 
       diode_encoder:
         what: diode
         where: encoder
         params:
-          # TODO: Proper nets for encoder and diode
-          from: col7
-          to: row3
+          from: "{{colrow}}"
+          to: "{{row_net}}"
         adjust:
           shift: [0, -10]
-          rotate: 180
 
       jstph:
         what: ceoloide/battery_connector_jst_ph_2
