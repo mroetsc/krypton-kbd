@@ -241,20 +241,20 @@ pcbs:
         what: ceoloide/mcu_nice_nano
         where: mcu
         params:
-          P3: col1
-          P4: col2
-          P5: col3
-          P6: col4
-          P7: col5
-          P8: col6
-          P9: col7
-          P18: row1
-          P15: row2
-          P14: row3
-          P16: row4
-          P10: row5
-          P19: RE_C
-          P20: RE_A
+          P3: RE_A
+          P4: RE_C
+          P5: row1
+          P6: row2
+          P7: row3
+          P8: row4
+          P9: row5
+          P20: col1
+          P19: col2
+          P18: col3
+          P15: col4
+          P14: col5
+          P16: col6
+          P10: col7
 
       reset:
         what: ceoloide/reset_switch_smd_side
@@ -270,15 +270,20 @@ pcbs:
           rotate: 180
         params:
           include_plate_hole_marking: true
+          # TODO: Proper nets for encoder and diode
+          S1: row3
+          S2: col7
 
       diode_encoder:
         what: diode
         where: encoder
         params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
+          # TODO: Proper nets for encoder and diode
+          from: col7
+          to: row3
         adjust:
           shift: [0, -10]
+          rotate: 180
 
       jstph:
         what: ceoloide/battery_connector_jst_ph_2
