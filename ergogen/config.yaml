@@ -219,21 +219,33 @@ pcbs:
         outline: board
     footprints:
       mx_hotswap:
-        what: mx
+        what: ceoloide/switch_mx
         where: switch
         params:
-          keycaps: true
-          reverse: false
+          include_keycap: true
+          reversible: false
           hotswap: true
           from: "{{column_net}}"
           to: "{{colrow}}"
+          hotswap_3dmodel_filename: ${ERGOGEN_MODELS}/kali_hotswap.step
+          hotswap_3dmodel_xyz_offset: [-0.7, -4.675, 1.75]
+          hotswap_3dmodel_xyz_rotation: [180, 0, 180]
+          switch_3dmodel_filename: ${ERGOGEN_MODELS}/mx_switch.step
+          switch_3dmodel_xyz_offset: [0, 0, -6.5]
+          switch_3dmodel_xyz_rotation: [0, -180, -90]
+          keycap_3dmodel_filename: ${ERGOGEN_MODELS}/mx_keycap.step
+          keycap_3dmodel_xyz_offset: [-8.75, 130.4, -13]
+          keycap_3dmodel_xyz_rotation: [-180, 0, 0]
 
       diode:
-        what: diode
+        what: ceoloide/diode_tht_sod123
         where: switch
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
+          include_tht: true
+          diode_3dmodel_filename: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step
+          diode_3dmodel_xyz_offset: [-3.75, 0, 0]
         adjust:
           shift: [0, -5]
 
@@ -255,6 +267,9 @@ pcbs:
           P14: col5
           P16: col6
           P10: col7
+          mcu_3dmodel_filename: ${ERGOGEN_MODELS}/mcu_nice_nano.step
+          mcu_3dmodel_xyz_offset: [0, 0, 2.5]
+          mcu_3dmodel_xyz_rotation: [0, 0, 90]
 
       reset:
         what: ceoloide/reset_switch_smd_side
@@ -262,6 +277,9 @@ pcbs:
           ref: mcu
           shift: [11, -25]
           rotate: -90
+        params:
+          reset_switch_3dmodel_filename: ${ERGOGEN_MODELS}/reset_switch.step
+          reset_switch_3dmodel_xyz_rotation: [0, 0, 180]
 
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12
@@ -272,13 +290,17 @@ pcbs:
           include_plate_hole_marking: true
           S1: col7
           S2: encoder_encoder
+          encoder_3dmodel_filename: ${ERGOGEN_MODELS}/encoder.step
 
       diode_encoder:
-        what: diode
+        what: ceoloide/diode_tht_sod123
         where: encoder
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
+          include_tht: true
+          diode_3dmodel_filename: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step
+          diode_3dmodel_xyz_offset: [-3.75, 0, 0]
         adjust:
           shift: [0, -10]
 
@@ -289,6 +311,9 @@ pcbs:
           shift: [0, -22.5]
         params:
           side: B
+          battery_connector_3dmodel_filename: ${ERGOGEN_MODELS}/jst_connector.step
+          battery_connector_3dmodel_xyz_offset: [-1, 0, 0]
+          battery_connector_3dmodel_xyz_rotation: [180, 0, 0]
 
       power:
         what: ceoloide/power_switch_smd_side
@@ -296,3 +321,6 @@ pcbs:
           ref: encoder_encoder_encoder
           shift: [0, 16]
           rotate: 80
+        params:
+          switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
+          switch_3dmodel_xyz_rotation: [-90, 0, -90]
