@@ -335,3 +335,7 @@ pcbs:
           switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
           switch_3dmodel_xyz_rotation: [-90, 0, -90]
 
+cases:
+  test_print:
+    - name: combo
+      extrude: 0.5
