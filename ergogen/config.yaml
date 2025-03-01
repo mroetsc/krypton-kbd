@@ -20,7 +20,7 @@ units:
   stagger: 3
   splay: -3
   extra_spacing: 1
-  thumbsplay: -6
+  thumbsplay: -23
 
   # --- Components --- #
   encoder_width: 12
@@ -38,7 +38,7 @@ points:
       key:
         tags: [switch]
         padding: 1ky
-        spread: 1ky
+        spread: 1kx
       columns:
         stretch:
           key:
@@ -48,11 +48,13 @@ points:
         pinky:
           key:
             stagger: stagger
+            spread: 1.05ky
             splay: splay
             column_net: col2
         ring:
           key:
             stagger: 2stagger
+            spread: 1.05ky
             splay: splay
             column_net: col3
         middle:
@@ -95,19 +97,20 @@ points:
         spread: 1ky
       columns:
         super:
-          key.column_net: col5
+          key:
+            column_net: col5
         space:
           key:
             splay: thumbsplay
-            spread: 1.15kx
-            stagger: -0.5stagger
+            spread: 1.25kx
+            stagger: -1.5stagger
             column_net: col6
 
         layer:
           key:
             splay: thumbsplay
-            spread: 1.15kx
-            stagger: -0.5stagger
+            spread: 1.25kx
+            stagger: -1.5stagger
             column_net: col7
       rows:
         cluster:
@@ -116,7 +119,7 @@ points:
     encoder:
       anchor:
         ref: matrix_brackets_bottom
-        shift: [1.25kx, 0.25ky]
+        shift: [0.9kx, -0.2ky]
       key:
         tags: [encoder]
         width: encoder_width
@@ -152,7 +155,7 @@ outlines:
     - what: rectangle
       where: switch
       bound: false
-      size: [kx-0.5,ky-0.5]
+      size: [kx-0.5, ky-0.5]
 
   mcu:
     - what: rectangle
@@ -178,8 +181,14 @@ outlines:
       operation: stack
       fillet: 2
       points:
-        - ref: thumb_layer_cluster
-          shift: [1.2px, -0.5py]
+        - ref: encoder_encoder_encoder
+          shift: [0.67px, -1.4py]
+        - ref: encoder_encoder_encoder
+          shift: [-0.1px, -2.15py]
+        - ref: matrix_brackets_home
+          shift: [0.0px, -2.5py]
+        - ref: thumb_super_cluster
+          shift: [0.5px, -0.6py]
         - ref: thumb_super_cluster
           shift: [-0.6px, -0.6py]
         - ref: matrix_index_bottom
@@ -193,11 +202,11 @@ outlines:
         - ref: matrix_stretch_top
           shift: [-0.6px, 0.6py]
         - ref: matrix_stretch_top
-          shift: [0.42px, 0.6py]
+          shift: [0.47px, 0.6py]
         - ref: matrix_pinky_num
           shift: [-0.6px, 0.6py]
         - ref: matrix_pinky_num
-          shift: [0.46px, 0.6py]
+          shift: [0.51px, 0.6py]
         - ref: matrix_ring_num
           shift: [-0.6px, 0.75py]
         - ref: matrix_middle_num
@@ -207,7 +216,7 @@ outlines:
         - ref: matrix_brackets_home
           shift: [0.85px, 0py]
         - ref: encoder_encoder_encoder
-          shift: [0.6px, 0.68py]
+          shift: [0.65px, 0.68py]
 
   combo:
     - name: board
@@ -325,3 +334,4 @@ pcbs:
         params:
           switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
           switch_3dmodel_xyz_rotation: [-90, 0, -90]
+
