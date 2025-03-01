@@ -276,9 +276,8 @@ pcbs:
       reset:
         what: ceoloide/reset_switch_smd_side
         where:
-          ref: mcu
-          shift: [11, -25]
-          rotate: -90
+          ref: matrix_inner_num
+          shift: [-5, 16.5]
         params:
           reset_switch_3dmodel_filename: ${ERGOGEN_MODELS}/reset_switch.step
           reset_switch_3dmodel_xyz_rotation: [0, 0, 180]
@@ -320,9 +319,9 @@ pcbs:
       power:
         what: ceoloide/power_switch_smd_side
         where:
-          ref: encoder_encoder_encoder
-          shift: [0, 16]
-          rotate: 80
+          ref: matrix_inner_num
+          shift: [8, 16.5]
+          rotate: 90
         params:
           switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
           switch_3dmodel_xyz_rotation: [-90, 0, -90]
