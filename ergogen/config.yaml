@@ -291,7 +291,7 @@ pcbs:
           include_plate_hole_marking: true
           S1: col7
           S2: encoder_encoder
-          encoder_3dmodel_filename: ${ERGOGEN_MODELS}/encoder.step
+          encoder_3dmodel_filename: ${ERGOGEN_MODELS}/encoder_with_knob.step
 
       diode_encoder:
         what: ceoloide/diode_tht_sod123
