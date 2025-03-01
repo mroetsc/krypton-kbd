@@ -116,7 +116,7 @@ points:
     encoder:
       anchor:
         ref: matrix_brackets_bottom
-        shift: [1.5kx, 0.5ky]
+        shift: [1.25kx, 0.25ky]
       key:
         tags: [encoder]
         width: encoder_width
@@ -179,23 +179,25 @@ outlines:
       fillet: 2
       points:
         - ref: thumb_layer_cluster
-          shift: [1.34px, -0.5py]
+          shift: [1.2px, -0.5py]
         - ref: thumb_super_cluster
           shift: [-0.6px, -0.6py]
         - ref: matrix_index_bottom
-          shift: [-0.15px, -0.75py]
+          shift: [-0.15px, -0.7py]
         - ref: matrix_ring_bottom
-          shift: [0px, -0.75py]
+          shift: [-0.1px, -0.7py]
         - ref: matrix_pinky_bottom
-          shift: [-0.75px, -0.85py]
+          shift: [0.3px, -0.85py]
         - ref: matrix_stretch_bottom
           shift: [-0.6px, -0.6py]
         - ref: matrix_stretch_top
           shift: [-0.6px, 0.6py]
         - ref: matrix_stretch_top
-          shift: [0.4px, 0.6py]
+          shift: [0.42px, 0.6py]
         - ref: matrix_pinky_num
           shift: [-0.6px, 0.6py]
+        - ref: matrix_pinky_num
+          shift: [0.46px, 0.6py]
         - ref: matrix_ring_num
           shift: [-0.6px, 0.75py]
         - ref: matrix_middle_num
@@ -203,9 +205,9 @@ outlines:
         - ref: mcu
           shift: [0.6px, 0.85py]
         - ref: matrix_brackets_home
-          shift: [0.85px, 0.5py]
+          shift: [0.85px, 0py]
         - ref: encoder_encoder_encoder
-          shift: [0.6px, 0.75py]
+          shift: [0.6px, 0.68py]
 
   combo:
     - name: board
