@@ -200,7 +200,7 @@ outlines:
       fillet: 2
       points:
         - ref: encoder_encoder_encoder
-          shift: [0.67px, -1.4py]
+          shift: [0.65px, -1.4py]
         - ref: encoder_encoder_encoder
           shift: [-0.1px, -2.15py]
         - ref: matrix_brackets_home
@@ -214,7 +214,7 @@ outlines:
         - ref: matrix_ring_bottom
           shift: [-0.1px, -0.7py]
         - ref: matrix_pinky_bottom
-          shift: [0.3px, -0.85py]
+          shift: [0.3px, -0.92py]
         - ref: matrix_stretch_bottom
           shift: [-0.6px, -0.6py]
         - ref: matrix_stretch_top
@@ -227,10 +227,8 @@ outlines:
           shift: [0.51px, 0.6py]
         - ref: matrix_ring_num
           shift: [-0.6px, 0.75py]
-        - ref: matrix_middle_num
-          shift: [0px, 0.6py]
         - ref: mcu
-          shift: [0.6px, 0.85py]
+          shift: [0.625px, 0.87py]
         - ref: matrix_brackets_home
           shift: [0.85px, 0py]
         - ref: encoder_encoder_encoder
