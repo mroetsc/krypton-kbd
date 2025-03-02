@@ -137,7 +137,7 @@ points:
     mcu:
       anchor:
         ref: matrix_brackets_top
-        shift: [0.25kx, 1.5ky]
+        shift: [0.25kx, 1.55ky]
       key:
         tags: [mcu]
         width: mcu_width
@@ -228,7 +228,7 @@ outlines:
         - ref: matrix_ring_num
           shift: [-0.6px, 0.75py]
         - ref: mcu
-          shift: [0.625px, 0.87py]
+          shift: [0.625px, 0.82py]
         - ref: matrix_brackets_home
           shift: [0.85px, 0py]
         - ref: encoder_encoder_encoder
@@ -358,7 +358,7 @@ pcbs:
         what: ceoloide/power_switch_smd_side
         where:
           ref: matrix_inner_num
-          shift: [8, 16.5]
+          shift: [8, 16.75]
           rotate: 90
         params:
           switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
