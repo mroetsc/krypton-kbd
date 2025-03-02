@@ -27,6 +27,8 @@ units:
   encoder_height: 12
   mcu_width: 18
   mcu_height: 33
+  display_height: 36
+  display_width: 14
 
 points:
   zones:
@@ -141,6 +143,15 @@ points:
         width: mcu_width
         height: mcu_height
 
+    display:
+      anchor:
+        ref: mcu
+        shift: [0, -0.15py]
+      key:
+        tags: [display]
+        width: display_width
+        height: display_height
+
   #mirror:
   #  ref: matrix_brackets_top
   #  distance: 100
@@ -162,6 +173,11 @@ outlines:
       where: mcu
       size: [mcu_width, mcu_height]
 
+  display:
+    - what: rectangle
+      where: display
+      size: [display_width, display_height]
+
   encoder:
     - what: rectangle
       where: encoder
@@ -173,6 +189,8 @@ outlines:
       name: keys
     - operation: add
       name: mcu
+    - operation: add
+      name: display
     - operation: add
       name: encoder
 
@@ -264,7 +282,10 @@ pcbs:
         what: ceoloide/mcu_nice_nano
         where: mcu
         params:
-          P3: RE_A
+          P1: CS
+          P2: SCL
+          P3: MOSI
+          P21: RE_A
           P4: RE_C
           P5: row1
           P6: row2
@@ -281,6 +302,15 @@ pcbs:
           mcu_3dmodel_filename: ${ERGOGEN_MODELS}/mcu_nice_nano.step
           mcu_3dmodel_xyz_offset: [0, 0, 2.5]
           mcu_3dmodel_xyz_rotation: [0, 0, 90]
+
+      niceview:
+        what: ceoloide/display_nice_view
+        where: display
+        params:
+          SCK: SCL
+          niceview_3dmodel_filename: ${ERGOGEN_MODELS}/nice_view.step
+          niceview_3dmodel_xyz_offset: [0, 0, 8]
+          niceview_3dmodel_xyz_rotation: [0, 0, -90]
 
       reset:
         what: ceoloide/reset_switch_smd_side
@@ -316,9 +346,10 @@ pcbs:
 
       jstph:
         what: ceoloide/battery_connector_jst_ph_2
-        where:
-          ref: mcu
-          shift: [0, -22.5]
+        where: mcu
+        adjust:
+          shift: [-10, -32.5]
+          rotate: 90
         params:
           side: B
           battery_connector_3dmodel_filename: ${ERGOGEN_MODELS}/jst_connector.step
