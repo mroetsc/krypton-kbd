@@ -364,6 +364,32 @@ pcbs:
           switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
           switch_3dmodel_xyz_rotation: [-90, 0, -90]
 
+      holeTopLeft:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: matrix_ring_top
+          shift: [-9.5, 11]
+      holeBottomLeft:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: matrix_ring_bottom
+          shift: [-9.5, 11]
+      holeTopRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: matrix_inner_top
+          shift: [-9.5, 11]
+      holeBottomRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: matrix_inner_bottom
+          shift: [-9.5, 11]
+      holeOuterRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: encoder_encoder_encoder
+          shift: [8, -15]
+
 cases:
   test_print:
     - name: combo
