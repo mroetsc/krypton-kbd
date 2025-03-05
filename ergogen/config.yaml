@@ -159,42 +159,37 @@ points:
   #  distance: 100
 
 outlines:
-  raw:
-    - what: rectangle
-      where: true
-      size: [px, py]
-
-  keys:
+  _keys:
     - what: rectangle
       where: switch
       bound: false
       size: [kx-0.5, ky-0.5]
 
-  mcu:
+  _mcu:
     - what: rectangle
       where: mcu
       size: [mcu_width, mcu_height]
 
-  display:
+  _display:
     - what: rectangle
       where: display
       size: [display_width, display_height]
 
-  encoder:
+  _encoder:
     - what: rectangle
       where: encoder
       size: [encoder_width, encoder_height]
 
-  components:
-    - name: components
+  _components:
+    - name: _components
     - operation: add
-      name: keys
+      name: _keys
     - operation: add
-      name: mcu
+      name: _mcu
     - operation: add
-      name: display
+      name: _display
     - operation: add
-      name: encoder
+      name: _encoder
 
   board:
     - what: polygon
@@ -279,7 +274,7 @@ outlines:
   combo:
     - name: board
     - operation: subtract
-      name: components
+      name: _components
 
 pcbs:
   left:
