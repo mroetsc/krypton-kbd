@@ -41,7 +41,7 @@ points:
     # ----- Keys ----- #
     matrix:
       anchor:
-        shift: [125, -150]
+        shift: [50, -175]
         rotate: -2splay
       key:
         tags: [switch]
@@ -145,7 +145,6 @@ points:
         ref: matrix_brackets_top
         shift: [0.25kx, 1.55ky]
       key:
-        tags: [mcu]
         width: mcu_width
         height: mcu_height
 
@@ -154,13 +153,12 @@ points:
         ref: mcu
         shift: [0, -0.15py]
       key:
-        tags: [display]
         width: display_width
         height: display_height
 
-  #mirror:
-  #  ref: matrix_brackets_top
-  #  distance: 100
+  mirror:
+    ref: matrix_brackets_top
+    distance: 100
 
 outlines:
   _keys:
@@ -195,7 +193,7 @@ outlines:
     - operation: add
       name: _encoder
 
-  board:
+  board_left:
     - what: polygon
       operation: stack
       fillet: 2
@@ -235,8 +233,48 @@ outlines:
         - ref: encoder_encoder_encoder
           shift: [0.65px, 0.68py]
 
-  combo:
-    - name: board
+  board_right:
+    - what: polygon
+      operation: stack
+      fillet: 2
+      points:
+        - ref: mirror_encoder_encoder_encoder
+          shift: [0.65px, -1.4py]
+        - ref: mirror_encoder_encoder_encoder
+          shift: [-0.1px, -2.15py]
+        - ref: mirror_matrix_brackets_home
+          shift: [0.0px, -2.5py]
+        - ref: mirror_thumb_super_cluster
+          shift: [0.5px, -0.6py]
+        - ref: mirror_thumb_super_cluster
+          shift: [-0.6px, -0.6py]
+        - ref: mirror_matrix_index_bottom
+          shift: [-0.15px, -0.7py]
+        - ref: mirror_matrix_ring_bottom
+          shift: [-0.1px, -0.7py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [0.3px, -0.92py]
+        - ref: mirror_matrix_stretch_bottom
+          shift: [-0.6px, -0.6py]
+        - ref: mirror_matrix_stretch_top
+          shift: [-0.6px, 0.6py]
+        - ref: mirror_matrix_stretch_top
+          shift: [0.47px, 0.6py]
+        - ref: mirror_matrix_pinky_num
+          shift: [-0.6px, 0.6py]
+        - ref: mirror_matrix_pinky_num
+          shift: [0.51px, 0.6py]
+        - ref: mirror_matrix_ring_num
+          shift: [-0.6px, 0.75py]
+        - ref: mirror_mcu
+          shift: [0.625px, 0.82py]
+        - ref: mirror_matrix_brackets_home
+          shift: [0.85px, 0py]
+        - ref: mirror_encoder_encoder_encoder
+          shift: [0.65px, 0.68py]
+
+  combo_left:
+    - name: board_left
     - operation: subtract
       name: _components
 
@@ -283,7 +321,7 @@ outlines:
       name: _holeOuterRight
 
   _switchplate:
-    - name: board
+    - name: board_left
     - operation: subtract
       name: _keys
     - operation: subtract
@@ -293,13 +331,14 @@ outlines:
 
 pcbs:
   left:
+    template: kicad8
     outlines:
       main:
-        outline: board
+        outline: board_left
     footprints:
       mx_hotswap:
         what: ceoloide/switch_mx
-        where: switch
+        where: /^(matrix|thumb)_.*/
         params:
           include_keycap: true
           reversible: false
@@ -318,7 +357,7 @@ pcbs:
 
       diode:
         what: ceoloide/diode_tht_sod123
-        where: switch
+        where: /^(matrix|thumb)_.*/
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
@@ -373,7 +412,7 @@ pcbs:
 
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12
-        where: encoder
+        where: encoder_encoder_encoder
         adjust:
           rotate: 180
         params:
@@ -384,7 +423,7 @@ pcbs:
 
       diode_encoder:
         what: ceoloide/diode_tht_sod123
-        where: encoder
+        where: encoder_encoder_encoder
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
@@ -442,13 +481,164 @@ pcbs:
           ref: encoder_encoder_encoder
           shift: [8, -15]
 
+  right:
+    template: kicad8
+    outlines:
+      main:
+        outline: board_right
+    footprints:
+      mx_hotswap:
+        what: ceoloide/switch_mx
+        where: /^mirror_(matrix|thumb)_.*/
+        params:
+          include_keycap: true
+          reversible: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+          hotswap_3dmodel_filename: ${ERGOGEN_MODELS}/kali_hotswap.step
+          hotswap_3dmodel_xyz_offset: [-0.7, -4.675, 1.75]
+          hotswap_3dmodel_xyz_rotation: [180, 0, 180]
+          switch_3dmodel_filename: ${ERGOGEN_MODELS}/mx_switch.step
+          switch_3dmodel_xyz_offset: [0, 0, -6.5]
+          switch_3dmodel_xyz_rotation: [0, -180, -90]
+          keycap_3dmodel_filename: ${ERGOGEN_MODELS}/mx_keycap.step
+          keycap_3dmodel_xyz_offset: [-8.75, 130.4, -13]
+          keycap_3dmodel_xyz_rotation: [-180, 0, 0]
+
+      diode:
+        what: ceoloide/diode_tht_sod123
+        where: /^mirror_(matrix|thumb)_.*/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+          include_tht: true
+          diode_3dmodel_filename: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step
+          diode_3dmodel_xyz_offset: [-3.75, 0, 0]
+        adjust:
+          shift: [0, -5]
+
+      nicenano:
+        what: ceoloide/mcu_nice_nano
+        where: mirror_mcu
+        params:
+          P1: CS
+          P2: SCL
+          P3: MOSI
+          P21: RE_A
+          P4: RE_C
+          P5: row1
+          P6: row2
+          P7: row3
+          P8: row4
+          P9: row5
+          P20: col1
+          P19: col2
+          P18: col3
+          P15: col4
+          P14: col5
+          P16: col6
+          P10: col7
+          mcu_3dmodel_filename: ${ERGOGEN_MODELS}/mcu_nice_nano.step
+          mcu_3dmodel_xyz_offset: [0, 0, 2.5]
+          mcu_3dmodel_xyz_rotation: [0, 0, 90]
+
+      niceview:
+        what: ceoloide/display_nice_view
+        where: mirror_display
+        params:
+          SCK: SCL
+          niceview_3dmodel_filename: ${ERGOGEN_MODELS}/nice_view.step
+          niceview_3dmodel_xyz_offset: [0, 0, 8]
+          niceview_3dmodel_xyz_rotation: [0, 0, -90]
+
+      reset:
+        what: ceoloide/reset_switch_smd_side
+        where:
+          ref: mirror_matrix_inner_num
+          shift: [-5, 16.5]
+        params:
+          reset_switch_3dmodel_filename: ${ERGOGEN_MODELS}/reset_switch.step
+          reset_switch_3dmodel_xyz_rotation: [0, 0, 180]
+
+      encoder:
+        what: ceoloide/rotary_encoder_ec11_ec12
+        where: mirror_encoder_encoder_encoder
+        adjust:
+          rotate: 180
+        params:
+          include_plate_hole_marking: true
+          S1: col7
+          S2: encoder_encoder
+          encoder_3dmodel_filename: ${ERGOGEN_MODELS}/encoder_with_knob.step
+
+      diode_encoder:
+        what: ceoloide/diode_tht_sod123
+        where: mirror_encoder_encoder_encoder
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+          include_tht: true
+          diode_3dmodel_filename: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step
+          diode_3dmodel_xyz_offset: [-3.75, 0, 0]
+        adjust:
+          shift: [0, -10]
+
+      jstph:
+        what: ceoloide/battery_connector_jst_ph_2
+        where: mirror_mcu
+        adjust:
+          shift: [-12, -35.5]
+          rotate: 90
+        params:
+          side: B
+          battery_connector_3dmodel_filename: ${ERGOGEN_MODELS}/jst_connector.step
+          battery_connector_3dmodel_xyz_offset: [-1, 0, 0]
+          battery_connector_3dmodel_xyz_rotation: [180, 0, 0]
+
+      power:
+        what: ceoloide/power_switch_smd_side
+        where:
+          ref: mirror_matrix_inner_num
+          shift: [8, 16.75]
+          rotate: -90
+        params:
+          switch_3dmodel_filename: ${ERGOGEN_MODELS}/power_switch.stp
+          switch_3dmodel_xyz_rotation: [-90, 0, -90]
+
+      holeTopLeft:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: mirror_matrix_ring_top
+          shift: [-9.5, 9.5]
+      holeBottomLeft:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: mirror_matrix_ring_bottom
+          shift: [-9.5, 9.5]
+      holeTopRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: mirror_matrix_inner_top
+          shift: [-9.5, 11]
+      holeBottomRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: mirror_matrix_inner_bottom
+          shift: [-9.5, 11]
+      holeOuterRight:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: mirror_encoder_encoder_encoder
+          shift: [8, -15]
+
 cases:
-  bottom:
-    - name: board
+  bottom_left:
+    - name: board_left
       extrude: 1
     - operation: subtract
       name: _holes
 
-  switchplate:
+  switchplate_left:
     - name: _switchplate
       extrude: 1
