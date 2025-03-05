@@ -11,6 +11,10 @@ units:
   kx: u
   ky: u
 
+  switch_cutout: 14
+  # TODO: encoder_cutout: 
+  screw_diameter: 2.2
+
   # --- Padding Variables --- #
   padding: 2
   px: kx + padding
@@ -163,7 +167,7 @@ outlines:
     - what: rectangle
       where: switch
       bound: false
-      size: [kx-0.5, ky-0.5]
+      size: [switch_cutout, switch_cutout]
 
   _mcu:
     - what: rectangle
@@ -231,50 +235,61 @@ outlines:
         - ref: encoder_encoder_encoder
           shift: [0.65px, 0.68py]
 
-  board_bigger:
-    - what: polygon
-      operation: stack
-      fillet: 2
-      points:
-        - ref: encoder_encoder_encoder
-          shift: [0.65dpx, -1.4dpy]
-        - ref: encoder_encoder_encoder
-          shift: [-0.1dpx, -2.15dpy]
-        - ref: matrix_brackets_home
-          shift: [0.0dpx, -2.5dpy]
-        - ref: thumb_super_cluster
-          shift: [0.5dpx, -0.6dpy]
-        - ref: thumb_super_cluster
-          shift: [-0.6dpx, -0.6dpy]
-        - ref: matrix_index_bottom
-          shift: [-0.15dpx, -0.7dpy]
-        - ref: matrix_ring_bottom
-          shift: [-0.1dpx, -0.7dpy]
-        - ref: matrix_pinky_bottom
-          shift: [0.3dpx, -0.92dpy]
-        - ref: matrix_stretch_bottom
-          shift: [-0.6dpx, -0.6dpy]
-        - ref: matrix_stretch_top
-          shift: [-0.6dpx, 0.6dpy]
-        - ref: matrix_stretch_top
-          shift: [0.47dpx, 0.6dpy]
-        - ref: matrix_pinky_num
-          shift: [-0.6dpx, 0.6dpy]
-        - ref: matrix_pinky_num
-          shift: [0.51dpx, 0.6dpy]
-        - ref: matrix_ring_num
-          shift: [-0.6dpx, 0.75dpy]
-        - ref: mcu
-          shift: [0.625dpx, 0.82dpy]
-        - ref: matrix_brackets_home
-          shift: [0.85dpx, 0dpy]
-        - ref: encoder_encoder_encoder
-          shift: [0.65dpx, 0.68dpy]
-
   combo:
     - name: board
     - operation: subtract
       name: _components
+
+  _holeTopLeft:
+    - what: circle
+      radius: screw_diameter / 2
+      where:
+        ref: matrix_ring_top
+        shift: [-9.5, 9.5]
+  _holeBottomLeft:
+    - what: circle
+      radius: screw_diameter / 2
+      where:
+        ref: matrix_ring_bottom
+        shift: [-9.5, 9.5]
+  _holeTopRight:
+    - what: circle
+      radius: screw_diameter / 2
+      where:
+        ref: matrix_inner_top
+        shift: [-9.5, 11]
+  _holeBottomRight:
+    - what: circle
+      radius: screw_diameter / 2
+      where:
+        ref: matrix_inner_bottom
+        shift: [-9.5, 11]
+  _holeOuterRight:
+    - what: circle
+      radius: screw_diameter / 2
+      where:
+        ref: encoder_encoder_encoder
+        shift: [7, -15]
+
+  _holes:
+    - name: _holeTopLeft
+    - operation: add
+      name: _holeBottomLeft
+    - operation: add
+      name: _holeTopRight
+    - operation: add
+      name: _holeBottomRight
+    - operation: add
+      name: _holeOuterRight
+
+  _switchplate:
+    - name: board
+    - operation: subtract
+      name: _keys
+    - operation: subtract
+      name: _encoder
+    - operation: subtract
+      name: _holes
 
 pcbs:
   left:
@@ -405,12 +420,12 @@ pcbs:
         what: ceoloide/mounting_hole_plated
         where:
           ref: matrix_ring_top
-          shift: [-9.5, 11]
+          shift: [-9.5, 9.5]
       holeBottomLeft:
         what: ceoloide/mounting_hole_plated
         where:
           ref: matrix_ring_bottom
-          shift: [-9.5, 11]
+          shift: [-9.5, 9.5]
       holeTopRight:
         what: ceoloide/mounting_hole_plated
         where:
@@ -431,19 +446,9 @@ cases:
   bottom:
     - name: board
       extrude: 1
-  bottom_outer:
-    - name: board_bigger
+    - operation: subtract
+      name: _holes
+
+  switchplate:
+    - name: _switchplate
       extrude: 1
-  _outerWall:
-    - name: board_bigger
-      extrude: 4
-  _innerWall:
-    - name: board
-      extrude: 4
-  wall:
-    - what: case
-      name: _outerWall
-      operation: add
-    - what: case
-      name: _innerWall
-      operation: subtract
