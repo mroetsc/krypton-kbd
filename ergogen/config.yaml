@@ -533,6 +533,19 @@ pcbs:
             - "F(-3.81,5)(-6.54975,5)(-10.09912,8.54937)(-22.47359,14.05884)(-24.2106,13.39206)(-25.17374,11.2288)"  # net: row5
             - "F(-25.17375,11.2288)(-27.15655,12.11161)(-29.20918,17.45887)(-36.69459,25.21025)(-42.4054,25.30993)"  # net: row5
 
+      text:
+        what: ceoloide/utility_text
+        where:
+          ref: matrix_middle_bottom
+          shift: [0, -14]
+        params:
+          text: krypton-kbd
+          height: 3
+          width: 3
+          thickness: 0.6
+          bold: true
+          knockout: true
+
   right:
     template: kicad8
     outlines:
@@ -683,6 +696,19 @@ pcbs:
         where:
           ref: mirror_encoder_encoder_encoder
           shift: [8, -15]
+
+      text:
+        what: ceoloide/utility_text
+        where:
+          ref: mirror_matrix_middle_bottom
+          shift: [0, -14]
+        params:
+          text: krypton-kbd
+          height: 3
+          width: 3
+          thickness: 0.6
+          bold: true
+          knockout: true
 
 cases:
   bottom_left:
