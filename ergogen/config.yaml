@@ -488,6 +488,51 @@ pcbs:
           ref: encoder_encoder_encoder
           shift: [8, -15]
 
+      routes_inner_key:
+        what: ceoloide/utility_router
+        where: /^(matrix|thumb)_.*/
+        params:
+          locked: false
+          routes:
+            - "B(-1.65,5)(-3.81,5)"  # net: row1
+            - "B(1.65,5)(3.81,5)(5.46902,5)(7.36423,3.10479)(7.36423,-1.39521)(5.842,-2.91744)(5.842,-5.08)"  # net: ring_num
+      routes_cols_straight:
+        what: ceoloide/utility_router
+        where: /^matrix_(middle|index|pinky|stretch)_(num|top|home).*/
+        params:
+          locked: false
+          routes:
+            - "B(-7.085,-2.54)(-7.085,16.46)"  # net: col4
+      routes_cols_screws_ring:
+        what: ceoloide/utility_router
+        where: /^(matrix)_ring_bottom.*/
+        params:
+          locked: false
+          routes:
+            - "B(-7.085,-2.54)(-7.085,-6.94598)(-6.13577,-7.89521)(-6.13577,-10.89521)(-7.085,-11.84444)(-7.085,-21.54)(-7.085,-40.54)(-7.085,-44.94598)(-6.13577,-45.89521)(-6.13577,-48.89521)(-7.085,-49.84444)(-7.085,-59.54)"  # net: col3
+      routes_cols_screws_inner:
+        what: ceoloide/utility_router
+        where: /^(matrix)_inner_bottom.*/
+        params:
+          locked: false
+          routes:
+            - "B(-7.085,-2.54)(-7.085,-7.94598)(-6.13577,-8.89521)(-6.13577,-12.39521)(-7.085,-13.34444)(-7.085,-21.54)(-7.085,-40.54)(-7.085,-45.94598)(-6.13577,-46.89521)(-6.13577,-50.39521)(-7.085,-51.34444)(-7.085,-59.54)"  # net: col6
+      routes_rows_matrix:
+        what: ceoloide/utility_router
+        where: /^(matrix)_inner_(num|top|home|bottom).*/
+        params:
+          locked: false
+          routes:
+            - "F(-3.81,5)(-21.24056,5)(-22.81,3.43056)(-22.81,2)(-40.24056,2)(-41.81,0.43056)(-41.81,-1)(-44.03098,-1)(-50.13577,5.10479)(-59.13577,5.10479)(-60.81,3.43056)(-60.81,2)"  # net: row3
+      routes_rows_thumb:
+        what: ceoloide/utility_router
+        where: thumb_layer_cluster
+        params:
+          locked: false
+          routes:
+            - "F(-3.81,5)(-6.54975,5)(-10.09912,8.54937)(-22.47359,14.05884)(-24.2106,13.39206)(-25.17374,11.2288)"  # net: row5
+            - "F(-25.17375,11.2288)(-27.15655,12.11161)(-29.20918,17.45887)(-36.69459,25.21025)(-42.4054,25.30993)"  # net: row5
+
   right:
     template: kicad8
     outlines:
