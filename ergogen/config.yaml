@@ -12,7 +12,8 @@ units:
   ky: u
 
   switch_cutout: 14
-  # TODO: encoder_cutout: 
+  # TODO: double check the value
+  encoder_cutout: 14
   screw_diameter: 2.2
 
   # --- Padding Variables --- #
@@ -182,6 +183,11 @@ outlines:
       where: encoder
       size: [encoder_width, encoder_height]
 
+  _encoder_cutout:
+    - what: rectangle
+      where: encoder
+      size: [encoder_cutout, encoder_cutout]
+
   _components:
     - name: _components
     - operation: add
@@ -320,12 +326,13 @@ outlines:
     - operation: add
       name: _holeOuterRight
 
+  # TODO: cutout for mcu / check if it fits under switchplate
   _switchplate:
     - name: board_left
     - operation: subtract
       name: _keys
     - operation: subtract
-      name: _encoder
+      name: _encoder_cutout
     - operation: subtract
       name: _holes
 
