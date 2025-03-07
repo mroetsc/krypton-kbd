@@ -139,7 +139,7 @@ points:
             column_net: col7
       rows:
         encoder:
-          row_net: row3
+          row_net: row4
 
     mcu:
       anchor:
@@ -634,7 +634,7 @@ pcbs:
         params:
           include_plate_hole_marking: true
           S1: col7
-          S2: encoder_encoder
+          S2: mirror_encoder_encoder
           encoder_3dmodel_filename: ${ERGOGEN_MODELS}/encoder_with_knob.step
 
       diode_encoder:
