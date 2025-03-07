@@ -1,3 +1,7 @@
 [submodule "ergogen/footprints/ceoloide"]
 	path = ergogen/footprints/ceoloide
 	url = git@github.com:ceoloide/ergogen-footprints.git
+[submodule "firmware"]
+	path = firmware
+	url = git@github.com:mroetsc/krypton-zmk-config.git
+	branch = main
