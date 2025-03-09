@@ -313,7 +313,7 @@ outlines:
       radius: screw_diameter / 2
       where:
         ref: encoder_encoder_encoder
-        shift: [7, -15]
+        shift: [8, -15]
 
   _holes:
     - name: _holeTopLeft
@@ -753,10 +753,10 @@ pcbs:
 cases:
   bottom_left:
     - name: board_left
-      extrude: 1
+      extrude: 2
     - operation: subtract
       name: _holes
 
   switchplate_left:
     - name: _switchplate
-      extrude: 1
+      extrude: 3
