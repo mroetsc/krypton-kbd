@@ -388,13 +388,13 @@ pcbs:
           P7: row3
           P8: row4
           P9: row5
-          P20: col1
-          P19: col2
-          P18: col3
+          P20: col7
+          P19: col6
+          P18: col5
           P15: col4
-          P14: col5
-          P16: col6
-          P10: col7
+          P14: col3
+          P16: col2
+          P10: col1
           mcu_3dmodel_filename: ${ERGOGEN_MODELS}/mcu_nice_nano.step
           mcu_3dmodel_xyz_offset: [0, 0, 2.5]
           mcu_3dmodel_xyz_rotation: [0, 0, 90]
