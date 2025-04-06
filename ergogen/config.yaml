@@ -592,11 +592,11 @@ pcbs:
           P3: MOSI
           P21: RE_A
           P4: RE_C
-          P5: row1
-          P6: row2
+          P5: row5
+          P6: row4
           P7: row3
-          P8: row4
-          P9: row5
+          P8: row2
+          P9: row1
           P20: col1
           P19: col2
           P18: col3
