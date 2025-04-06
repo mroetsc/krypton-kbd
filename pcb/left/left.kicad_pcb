@@ -8,7 +8,7 @@
 	)
 	(paper "A3")
 	(title_block
-		(title "left")
+		(title "Krypton Left")
 		(date "2025-04-06")
 		(rev "1")
 		(company "mroetsc")
