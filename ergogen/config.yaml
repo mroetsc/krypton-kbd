@@ -475,26 +475,31 @@ pcbs:
         where:
           ref: matrix_ring_top
           shift: [-9.5, 9.5]
+        params.drill: 3.2
       holeBottomLeft:
         what: ceoloide/mounting_hole_plated
         where:
           ref: matrix_ring_bottom
           shift: [-9.5, 9.5]
+        params.drill: 3.2
       holeTopRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: matrix_inner_top
           shift: [-9.5, 11]
+        params.drill: 3.2
       holeBottomRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: matrix_inner_bottom
           shift: [-9.5, 11]
+        params.drill: 3.2
       holeOuterRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: encoder_encoder_encoder
           shift: [8, -15]
+        params.drill: 3.2
 
       routes_inner_key:
         what: ceoloide/utility_router
@@ -690,26 +695,31 @@ pcbs:
         where:
           ref: mirror_matrix_ring_top
           shift: [-9.5, 9.5]
+        params.drill: 3.2
       holeBottomLeft:
         what: ceoloide/mounting_hole_plated
         where:
           ref: mirror_matrix_ring_bottom
           shift: [-9.5, 9.5]
+        params.drill: 3.2
       holeTopRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: mirror_matrix_inner_top
           shift: [-9.5, 11]
+        params.drill: 3.2
       holeBottomRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: mirror_matrix_inner_bottom
           shift: [-9.5, 11]
+        params.drill: 3.2
       holeOuterRight:
         what: ceoloide/mounting_hole_plated
         where:
           ref: mirror_encoder_encoder_encoder
           shift: [8, -15]
+        params.drill: 3.2
 
       routes_inner_key:
         what: ceoloide/utility_router
@@ -775,6 +785,7 @@ cases:
       extrude: 2
     - operation: subtract
       name: _holes
+      extrude: 2
 
   switchplate_left:
     - name: _switchplate
