@@ -173,6 +173,13 @@ outlines:
       where: mcu
       size: [mcu_width, mcu_height]
 
+  _mcu_cutout:
+    - what: rectangle
+      where:
+        ref: mcu
+        shift: [1.75, 0]
+      size: [mcu_width + 6, mcu_height + 10]
+
   _display:
     - what: rectangle
       where: display
@@ -326,13 +333,14 @@ outlines:
     - operation: add
       name: _holeOuterRight
 
-  # TODO: cutout for mcu / check if it fits under switchplate
   _switchplate:
     - name: board_left
     - operation: subtract
       name: _keys
     - operation: subtract
       name: _encoder_cutout
+    - operation: subtract
+      name: _mcu_cutout
     - operation: subtract
       name: _holes
 
