@@ -1380,13 +1380,13 @@
 		(embedded_fonts no)
 		(model "${ERGOGEN_MODELS}/mcu_nice_nano.step"
 			(offset
-				(xyz 0 0 2.5)
+				(xyz 0 0 4.42)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 90)
+				(xyz -0 -0 90)
 			)
 		)
 	)
@@ -1715,13 +1715,13 @@
 		(embedded_fonts no)
 		(model "${ERGOGEN_MODELS}/nice_view.step"
 			(offset
-				(xyz 0 0 8)
+				(xyz 0 0 10)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 -90)
+				(xyz -0 -0 -90)
 			)
 		)
 	)
