@@ -8,8 +8,8 @@ Named after the noble gas [krypton](https://en.wikipedia.org/wiki/Krypton).
 * Completely wireless with support for wired
 * One rotary encoder per half
 * Num row
-* Ergonomic, easily reachable thump cluster, also ideal for larger hands
-* 3D-printed case and switchplate
+* Ergonomic, easily reachable thumb cluster, also ideal for larger hands
+* 3D-printed case (open and closed versions) and switchplate
 * Support for [ZMK Studio](https://zmk.dev/docs/features/studio), allowing keymap changes without reflashing
 * Support for nice!view displays
 
